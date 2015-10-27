@@ -21,14 +21,17 @@
 
 package org.geolatte.geom;
 
+import java.io.Serializable;
+
+import org.geolatte.geom.jts.DimensionalCoordinate;
+
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.Envelope;
-import org.geolatte.geom.jts.DimensionalCoordinate;
 
 /**
  * @author Karel Maesen, Geovise BVBA, 2011
  */
-abstract class AbstractPositionSequence<P extends Position> implements PositionSequence<P>, CoordinateSequence {
+abstract class AbstractPositionSequence<P extends Position> implements PositionSequence<P>, CoordinateSequence, Serializable {
 
     private final PositionFactory<P> factory;
 

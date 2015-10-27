@@ -21,17 +21,26 @@
 
 package org.geolatte.geom.jts;
 
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.PROJECTED_2DM_METER;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.PROJECTED_2D_METER;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.PROJECTED_3DM_METER;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.PROJECTED_3D_METER;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.hasMeasureAxis;
+import static org.geolatte.geom.crs.CoordinateReferenceSystems.hasVerticalAxis;
+
+import java.io.Serializable;
+import java.util.Arrays;
+
+import org.geolatte.geom.Position;
+import org.geolatte.geom.PositionSequence;
+import org.geolatte.geom.PositionSequenceBuilder;
+import org.geolatte.geom.PositionSequenceBuilders;
+import org.geolatte.geom.crs.CoordinateReferenceSystem;
+
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFactory;
 import com.vividsolutions.jts.geom.impl.CoordinateArraySequence;
-import org.geolatte.geom.*;
-import org.geolatte.geom.crs.CoordinateReferenceSystem;
-import org.geolatte.geom.crs.CoordinateSystem;
-
-import java.util.Arrays;
-
-import static org.geolatte.geom.crs.CoordinateReferenceSystems.*;
 
 /**
  * A <code>CoordinateSequenceFactory</code> that creates <code>PointSequences</code> (which extend
@@ -40,7 +49,7 @@ import static org.geolatte.geom.crs.CoordinateReferenceSystems.*;
  * @author Karel Maesen, Geovise BVBA
  *         creation-date: 11/22/11
  */
-class PointSequenceCoordinateSequenceFactory implements CoordinateSequenceFactory {
+class PointSequenceCoordinateSequenceFactory implements CoordinateSequenceFactory, Serializable {
 
     @Override
     public CoordinateSequence create(Coordinate[] coordinates) {
